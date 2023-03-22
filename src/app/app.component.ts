@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StorageService } from './services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'crud-app';
+  title = 'CRUD-App';
+  access$ = this.storageService.loginAccess$
+
+  constructor(
+    private storageService: StorageService
+  ) { }
+
+  Logout(): void {
+    this.storageService.cancelAccess();
+  }
 }

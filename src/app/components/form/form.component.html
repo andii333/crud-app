@@ -1,0 +1,53 @@
+<form class="form" (ngSubmit)="submit()" [formGroup]="form">
+  <p class="form__title"> {{car ? 'Edit car' : 'Add car'}}</p>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="email">Car model</label>
+    <input class="form__input" type="text" id="model" formControlName="model">
+    <div class="form__error" *ngIf='form.controls.model.invalid && form.controls.model.touched'>
+      <p class="form__error_text" *ngIf="form.controls['model'].errors?.['minlength']">Data is too short</p>
+      <p class="form__error_text" *ngIf="form.controls['model'].errors?.['maxlength']">Data is too long</p>
+      <p class="form__error_text" *ngIf="form.controls['model'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="year">Year</label>
+    <input class="form__input" type="number" id="year" formControlName="year">
+    <div class="form__error" *ngIf='form.controls.year.invalid && form.controls.year.touched'>
+      <p class="form__error_text" *ngIf="form.controls['year'].errors?.['pattern']">Data must contain 4 numbers</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="price">Price</label>
+    <input class="form__input" type="number" id="price" formControlName="price">
+    <div class="form__error" *ngIf='form.controls.price.invalid && form.controls.price.touched'>
+      <p class="form__error_text" *ngIf="form.controls['price'].errors?.['pattern']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="color">Color</label>
+    <input class="form__input" type="text" id="color" formControlName="color">
+    <div class="form__error" *ngIf='form.controls.color.invalid && form.controls.color.touched'>
+      <p class="form__error_text" *ngIf="form.controls['color'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable">Gearbox</label>
+    <div>
+      <mat-radio-group class="form__gearbox" formControlName="gearbox" aria-label="Select an option">
+        <mat-radio-button class="form__input_radio" color="primary" value="automatic">
+          Automatic
+        </mat-radio-button>
+        <mat-radio-button class="form__input_radio" color="primary" value="mechanic">
+          Mechanic
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <button class="form__submit" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+</form>
